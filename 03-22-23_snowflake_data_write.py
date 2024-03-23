@@ -1,3 +1,7 @@
+
+#import --you need to install jdbc driver in the snowflake cluster under libraries and restart , then it connects to mysql db
+
+
 # Databricks notebook source
 myconf = {
       "url":"jdbc:mysql://mysqzi.us-east-2.rds.amazonaws.com:3306/mysqldb",
