@@ -1,6 +1,10 @@
 
 #import --you need to install jdbc driver in the snowflake cluster under libraries and restart , then it connects to mysql db
 
+#https://mvnrepository.com/artifact/net.snowflake/spark-snowflake_2.12/2.13.0-spark_3.3
+#https://mvnrepository.com/artifact/net.snowflake/snowflake-jdbc/3.14.4
+#https://mvnrepository.com/artifact/net.snowflake/snowflake-ingest-sdk/2.0.2
+
 
 # Databricks notebook source
 myconf = {
@@ -18,10 +22,6 @@ sfconf = {
       "sfSchema":"PUBLIC",
       "sfWarehouse":"COMPUTE_WH"
 }
-
-#https://mvnrepository.com/artifact/net.snowflake/spark-snowflake_2.12/2.13.0-spark_3.3
-#https://mvnrepository.com/artifact/net.snowflake/snowflake-jdbc/3.14.4
-#https://mvnrepository.com/artifact/net.snowflake/snowflake-ingest-sdk/2.0.2
 
 
 
