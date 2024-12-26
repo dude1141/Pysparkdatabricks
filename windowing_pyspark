@@ -1,4 +1,6 @@
-concept lag and windowing functions:
+
+#window functions
+
 
 from pyspark.sql import *
 from pyspark.sql.functions import *
@@ -18,6 +20,8 @@ df=spark.read.format("csv").option("header","true").load(data)
 
 win2=Window.partitionBy("veg_name").orderBy(col("date"))
 
+# we need  price with previous price, we need lag value with rest of changes in price for each day
+
 df=df.withColumn("previous_price",lag("price").over(win2))
 
 df = df.withColumn("day_change",
@@ -28,6 +32,8 @@ df = df.withColumn("day_change",
           concat((col("previous_price") - col("price")).cast("int").cast("string"), lit("down")))
     .otherwise("0")
 )
+
+# we need first price because we are comparing first value with rest of changes in price for each day
 
 df = df.withColumn("starting_price", first("price").over(win2))
 df.show()
@@ -40,6 +46,10 @@ df = df.withColumn("week_change",
     .otherwise("0")
 )
 df.show()
+
+
+
+
 
 
 
