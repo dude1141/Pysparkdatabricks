@@ -1,0 +1,45 @@
+concept lag and windowing functions:
+
+from pyspark.sql import *
+from pyspark.sql.functions import *
+
+from pyspark.sql import *
+from pyspark.sql.functions import *
+from pyspark.sql.functions import *
+
+spark=SparkSession.builder.appName("test").master("local[*]").getOrCreate()
+spark.conf.set("spark.sql.legacy.timeParserPolicy","LEGACY")
+from pyspark.sql import *
+from pyspark.sql.functions import *
+spark=SparkSession.builder.appName("test").master("local[*]").getOrCreate()
+data=r"C:\Users\mouni\Desktop\veg_price_data.csv"
+df=spark.read.format("csv").option("header","true").load(data)
+# df.show()
+
+win2=Window.partitionBy("veg_name").orderBy(col("date"))
+
+df=df.withColumn("previous_price",lag("price").over(win2))
+
+df = df.withColumn("day_change",
+    when(col("previous_price").isNull(), lit("0"))
+    .when(col("price") > col("previous_price"),
+          concat((col("price") - col("previous_price")).cast("int").cast("string"), lit("up")))
+    .when(col("price") < col("previous_price"),
+          concat((col("previous_price") - col("price")).cast("int").cast("string"), lit("down")))
+    .otherwise("0")
+)
+
+df = df.withColumn("starting_price", first("price").over(win2))
+df.show()
+df = df.withColumn("week_change",
+    when(col("starting_price").isNull(), lit("0"))
+    .when(col("price") > col("starting_price"),
+          concat((col("price") - col("starting_price")).cast("int").cast("string"), lit("up")))
+    .when(col("price") < col("starting_price"),
+          concat((col("starting_price") - col("price")).cast("int").cast("string"), lit("down")))
+    .otherwise("0")
+)
+df.show()
+
+
+
