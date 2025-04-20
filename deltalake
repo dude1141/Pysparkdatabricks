@@ -1,0 +1,42 @@
+delta lake
+
+schema evolution
+acid transcations
+schema enforcements
+
+delta log--TRANSACTION LOG, delta log --> and have crc and json
+	snappy 
+	
+	json--number of TRANSACTION and clusterid and notebookid
+	crc -- table size and number of files
+	
+	
+delta table--time travle concept.
+	vaccum ---cleans stale files
+	
+write optmitisic concurrent control--if for write , three steps are there read ,write and validate COMMIT
+
+
+compacttion---small files in to large files
+
+zorder --arrange reated informatin in same set of fies ,reducing amount of data needs to be read
+
+vaccum--delete compatcted files ,7 days by DEFAULT
+
+
+when you appy delete operation , data gets deleted by the parquet fies is retained in delta  for 7 days
+-it follows soft delete pattern--it will not remove IMMEDIATly
+-metadata json file has remove operation 
+
+
+in delta lake folder under delta loog ,
+has json ,crc and CHECKPOINT parquet file--- it has TRANSACTION, add, remove,metadata
+
+delta create(spark) TABLEname
+	.addcolumn("empid","INT")
+	.proprty
+	.location('filestore/tabe/deta/archdemo')
+	.EXECUTE()
+
+
+
