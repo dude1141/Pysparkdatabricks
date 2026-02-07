@@ -10,3 +10,9 @@ PERFORMANCE ISSUES:
 JOIN STRATEGIC:
 1) BROADCAST JOIN (SMALL DATASET----JOIN WITH OTHER DATASETS).
 2) BOTH DATASETS HUGE SORT -MERGE JOIN .
+
+
+
+unitycatalogue: https://studio.youtube.com/video/sVc9m1sQxiY/edit
+tables masking uc: https://youtu.be/Ye96j4YcAMU
+fullload and scd1 using databricks and azuresql: https://youtu.be/S2MF_g6viaA
