@@ -13,6 +13,6 @@ JOIN STRATEGIC:
 
 
 
-unitycatalogue: https://studio.youtube.com/video/sVc9m1sQxiY 
-tables masking uc: https://youtu.be/Ye96j4YcAMU 
-fullload and scd1 using databricks and azuresql: https://youtu.be/S2MF_g6viaA
+1) unitycatalogue: https://studio.youtube.com/video/sVc9m1sQxiY 
+2) tables masking uc: https://youtu.be/Ye96j4YcAMU 
+3) fullload and scd1 using databricks and azuresql: https://youtu.be/S2MF_g6viaA
