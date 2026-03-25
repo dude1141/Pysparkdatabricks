@@ -16,3 +16,17 @@ JOIN STRATEGIC:
 1) unitycatalogue: https://studio.youtube.com/video/sVc9m1sQxiY 
 2) tables masking uc: https://youtu.be/Ye96j4YcAMU 
 3) fullload and scd1 using databricks and azuresql: https://youtu.be/S2MF_g6viaA
+
+
+basics:
+Easy rule
+For calculations, filters, conditions → often ** use F.col() **
+For aggregate functions → usually use column name string directly
+Example
+** df.groupBy("category").agg(
+    F.sum("quantity").alias("total_qty")
+)  **
+
+But:
+
+** df.withColumn("total", F.col("price") * F.col("quantity")) **
