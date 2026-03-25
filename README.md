@@ -20,9 +20,12 @@ JOIN STRATEGIC:
 
 basics:
 Easy rule
-For calculations, filters, conditions → often **use F.col()** \
+For calculations, filters, conditions → often **use F.col()** 
+
 For aggregate functions → usually use column name string directly
-Example \
+
+**Example** 
+
 **df.groupBy("category").agg( \
 F.sum("quantity").alias("total_qty") \
 )**
