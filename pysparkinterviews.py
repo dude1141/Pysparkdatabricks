@@ -49,3 +49,28 @@ leftsemi.show()
 
 leftatis=df1.alias("a").join(df2.alias("b"),col("a.empid")==col("b.empid"),how="left_anti")
 leftatis.show()
+
+
+leftouter
++-----+----+-------+
+|empid|name|   city|
++-----+----+-------+
+|  101|John|   NULL|
+|  102|Mark|Dallkas|
+|  103| KUN|Newyork|
++-----+----+-------+
+
+leftsemi same as leftouter, but it returns only matched rows and columns from left table
++-----+----+
+|empid|name|
++-----+----+
+|  102|Mark|
+|  103| KUN|
++-----+----+
+
++-----+----+
+|empid|name|
++-----+----+
+|  101|John|
++-----+----+
+
