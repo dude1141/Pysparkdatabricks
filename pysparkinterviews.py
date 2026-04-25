@@ -74,3 +74,14 @@ leftsemi same as leftouter, but it returns only matched rows and columns from le
 |  101|John|
 +-----+----+
 
+
+
+#get records purchase more than 30 days
+from pyspark.sql.functions import to_date, datediff, current_timestamp
+data2=df.withColumn('last_purchase_date', to_date('last_purchase_date', 'yyyy-MM-dd'))    
+# data3=data2.withColumn('datadiff', to_date(current_timestamp() - 'last_purchase_date').cast("int")).select(data3.col("datadiff")>30).display()
+
+data3=data2.filter(datediff(current_timestamp(),data2.last_purchase_date)>400)
+data3.display()
+
+
