@@ -102,15 +102,8 @@ df_count = (
 )
 
 df_count.display()
-
 window_spec = Window.orderBy(col("employee_count").desc())
-
-df_top = (
-    df_count
-    .withColumn("rnk", rank().over(window_spec))
-    .filter(col("rnk") == 1)
-  
-)
+df_top = ( df_countwithColumn("ranks", rank().over(window_spec)).filter(col("ranks") == 1))
 
 display(df_top)
 
