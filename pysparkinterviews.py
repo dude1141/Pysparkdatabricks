@@ -85,3 +85,33 @@ data3=data2.filter(datediff(current_timestamp(),data2.last_purchase_date)>400)
 data3.display()
 
 
+
+data = [("Alice", "HR"), ("Bob", "Finance"), ("Charlie", "HR"), ("David", "Engineering"), ("Eve", "Finance")]
+columns = ["employee_name", "department"]
+
+df = spark.createDataFrame(data, columns)
+# df.display()
+
+from pyspark.sql.functions import count, col, rank
+from pyspark.sql.window import Window
+
+df_count = (
+    df
+    .groupBy("department")
+    .agg(count("employee_name").alias("employee_count"))
+)
+
+df_count.display()
+
+window_spec = Window.orderBy(col("employee_count").desc())
+
+df_top = (
+    df_count
+    .withColumn("rnk", rank().over(window_spec))
+    .filter(col("rnk") == 1)
+  
+)
+
+display(df_top)
+
+
